@@ -1,1 +1,1 @@
-# Oredo---Personal-Blog
+# Oredo Personal-Blog
