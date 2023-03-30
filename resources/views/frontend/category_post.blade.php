@@ -9,7 +9,8 @@
                         <div class="section-heading-2-title">
                             <h1>{{ $category_info->category_name }}
                             </h1>
-                            <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> Category Post
+                            <p class="links"><a href="{{ route('welcome') }}">Home <i class="las la-angle-right"></i></a>
+                                Category Post
                             </p>
                         </div>
                     </div>
@@ -26,13 +27,13 @@
                     @forelse ($category_posts as $category_post)
                         <div class="post-list post-list-style2">
                             <div class="post-list-image">
-                                <a href="post-single.html">
+                                <a href="{{ route('post.details', $category_post->slug) }}">
                                     <img src="{{ asset('/uploads/post') }}/{{ $category_post->feat_image }}" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
                                 <h3 class="entry-title">
-                                    <a href="post-single.html">
+                                    <a href="{{ route('post.details', $category_post->slug) }}">
                                         {{ $category_post->title }}
                                     </a>
                                 </h3>
@@ -56,7 +57,8 @@
                                     </p>
                                 </div>
                                 <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
+                                    <a href="{{ route('post.details', $category_post->slug) }}"
+                                        class="btn-read-more">Continue Reading <i
                                             class="las la-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>

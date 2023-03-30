@@ -76,8 +76,12 @@ class PostController extends Controller
     function post_delete($post_id)
     {
         $post_img = Post::find($post_id)->feat_image;
-        $delete_from = public_path('/uploads/post/' . $post_img);
-        unlink($delete_from);
+
+        if ($post_img == '') {
+        } else {
+            $delete_from = public_path('/uploads/post/' . $post_img);
+            unlink($delete_from);
+        }
 
         Post::find($post_id)->delete();
         return back();

@@ -130,18 +130,7 @@
                 <div class="col-lg-4 oredoo-sidebar">
                     <div class="theiaStickySidebar">
                         <div class="sidebar">
-                            <!--search-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h5>Search</h5>
-                                </div>
-                                <div class=" widget-search">
-                                    <form action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                                        <input type="search" id="gsearch" name="gsearch" placeholder="Search ....">
-                                        <a href="search.html" class="btn-submit"><i class="las la-search"></i></a>
-                                    </form>
-                                </div>
-                            </div>
+
 
                             <!--popular-posts-->
                             <div class="widget">
@@ -151,74 +140,29 @@
 
                                 <ul class="widget-popular-posts">
                                     <!--post1-->
-                                    <li class="small-post">
-                                        <div class="small-post-image">
-                                            <a href="post-single.html">
-                                                <img src="assets/img/blog/1.jpg" alt="">
-                                                <small class="nb">1</small>
-                                            </a>
-                                        </div>
-                                        <div class="small-post-content">
-                                            <p>
-                                                <a href="post-single.html">Everything is designed. Few things are
-                                                    designed well.</a>
-                                            </p>
-                                            <small> <span class="slash"></span>3 mounth ago</small>
-                                        </div>
-                                    </li>
 
-                                    <!--post2-->
-                                    <li class="small-post">
-                                        <div class="small-post-image">
-                                            <a href="post-single.html">
-                                                <img src="assets/img/blog/5.jpg" alt="">
-                                                <small class="nb">2</small>
-                                            </a>
-                                        </div>
-                                        <div class="small-post-content">
-                                            <p>
-                                                <a href="post-single.html">Brand yourself for the career you want, not
-                                                    the job you </a>
-                                            </p>
-                                            <small> <span class="slash"></span> 3 mounth ago</small>
-                                        </div>
-                                    </li>
+                                    @foreach ($popular_posts as $popular)
+                                        <li class="small-post">
+                                            <div class="small-post-image">
+                                                <a href="post-single.html">
+                                                    <img src="{{ asset('/uploads/post') }}/{{ $popular->rel_to_post->feat_image }}"
+                                                        alt="">
+                                                    <small class="nb">
+                                                        {{ $popular->sum }}
+                                                    </small>
+                                                </a>
+                                            </div>
+                                            <div class="small-post-content">
+                                                <p>
+                                                    <a href="post-single.html">{{ $popular->rel_to_post->title }}</a>
+                                                </p>
+                                                <small> <span class="slash"></span>
+                                                    {{ $popular->rel_to_post->created_at->diffForHumans() }}
+                                                </small>
+                                            </div>
+                                        </li>
+                                    @endforeach
 
-                                    <!--post3-->
-                                    <li class="small-post">
-                                        <div class="small-post-image">
-                                            <a href="post-single.html">
-                                                <img src="assets/img/blog/13.jpg" alt="">
-                                                <small class="nb">3</small>
-
-                                            </a>
-                                        </div>
-                                        <div class="small-post-content">
-                                            <p>
-                                                <a href="post-single.html">It’s easier to ask forgiveness than it is to
-                                                    get permission.</a>
-                                            </p>
-                                            <small> <span class="slash"></span>3 mounth ago</small>
-                                        </div>
-                                    </li>
-
-                                    <!--post4-->
-                                    <li class="small-post">
-                                        <div class="small-post-image">
-                                            <a href="post-single.html">
-                                                <img src="assets/img/blog/16.jpg" alt="">
-                                                <small class="nb">4</small>
-                                            </a>
-                                        </div>
-                                        <div class="small-post-content">
-                                            <p>
-                                                <a href="post-single.html">All happiness depends on a leisurely
-                                                    breakfast</a>
-                                            </p>
-                                            <small> <span class="slash"></span>
-                                                3 mounth ago</small>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
 

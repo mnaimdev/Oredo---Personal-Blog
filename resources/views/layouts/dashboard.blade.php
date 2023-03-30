@@ -62,9 +62,9 @@
                                 <li class="nav-item">
                                     <a href="{{ route('user') }}" class="nav-link">User List</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('trash') }}" class="nav-link">Trash List</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </li>
@@ -138,6 +138,10 @@
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
                                     <a href="{{ route('role') }}" class="nav-link">Role</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('assign.role') }}" class="nav-link">Role</a>
                                 </li>
 
                             </ul>
@@ -488,10 +492,6 @@
                             </div>
                         </div>
                     </li>
-
-
-
-
 
                 </ul>
             </div>

@@ -52,20 +52,20 @@
                                 <tr>
                                     <td>{{ $sl + 1 }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>
+                                    {{-- <td>
                                         @forelse ($user->getRoleNames() as $role)
                                             <span class="badge badge-success">{{ $role }}</span>
                                         @empty
                                             <span class="badge badge-secondary">Not Assigned</span>
                                         @endforelse
-                                    </td>
-                                    <td>
+                                    </td> --}}
+                                    {{-- <td>
                                         @forelse ($user->getAllPermissions() as $permission)
                                             <span class="badge badge-info">{{ $permission->name }}</span>
                                         @empty
                                             <span class="badge badge-secondary">Not Assigned</span>
                                         @endforelse
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a href="{{ route('edit.user.role', $user->id) }}" class="btn btn-primary">Edit</a>
 

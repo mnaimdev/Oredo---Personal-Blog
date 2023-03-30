@@ -46,7 +46,10 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 Route::post('/subscribe/store', [FrontendController::class, 'subscribe_store'])->name('subscribe.store');
+
 Route::post('/contact/store', [FrontendController::class, 'contact_store'])->name('contact.store');
+
+Route::get("/search", [FrontendController::class, "search"])->name("search");
 
 // Guest
 Route::get('/guest/register', [GuestRegisterController::class, 'guest_register'])->name('guest.register');

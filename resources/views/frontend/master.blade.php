@@ -11,7 +11,7 @@
     <link rel="icon" sizes="16x16" href="assets/img/favicon.png">
 
     <!-- Title -->Stay Connected
-    <title> Oredoo - Personal Blog HTML Template </title>
+    <title> Oredoo - Personal Blog</title>
 
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="{{ asset('/frontend_asset/css/bootstrap.min.css') }}">
@@ -51,18 +51,19 @@
                                 <li class="nav-item ">
                                     <a class="nav-link active" href="{{ route('welcome') }}"> Home </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href=""> Blogs </a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('author.list') }}"> Authors </a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('about') }}"> About </a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact') }}"> Contact </a>
                                 </li>
+
                             </ul>
                         </div>
                         <!--/-->
@@ -144,18 +145,19 @@
                                     <p>Sign up for free and be the first to get notified about new posts.</p>
                                 </div>
 
-                                <form action="{{ route('subscribe.store') }}" class="post">
+                                <form action="{{ route('subscribe.store') }}" method="POST">
                                     @csrf
                                     <div class="form-flex">
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control"
                                                 placeholder="Your Email Adress">
 
+                                            <button class="btn-dark form-control mt-2" type="submit">
+                                                subscribe
+                                            </button>
                                         </div>
 
-                                        <button class="submit-btn" type="submit">
-                                            <i class="fas fa-paper-plane"></i>
-                                        </button>
+
                                     </div>
                                     <div class="my-3">
                                         @error('email')
@@ -175,8 +177,7 @@
                                     <li><a href="https://www.facebook.com/mnaimdev" target="_blank">facebook</a></li>
                                     <li><a href="https://www.instagram.com/mohammadnaimkhan66/"
                                             target="_blank">instagram</a></li>
-                                    <li><a href="https://www.youtube.com/channel/UC_Ew5V5FHxBSux33r24dquw"
-                                            target="_blank">youtube</a></li>
+
                                     <li><a href="https://twitter.com/mnaimdev" target="_blank">twitter</a></li>
                                 </ul>
                             </div>
@@ -190,7 +191,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="copyright">
-                                <p>© 2022, Mohammad Naim, All Rights Reserved.</p>
+                                <p>© 2023, Mohammad Naim, All Rights Reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -216,10 +217,10 @@
                         <button type="button" class="close">
                             <i class="far fa-times"></i>
                         </button>
-                        <form class="search-form" action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                            <input type="search" value="" placeholder="What are you looking for?">
-                            <button type="submit" class="search-btn"> search</button>
-                        </form>
+                        <div class="search-form">
+                            <input type="text" class="search-input" placeholder="What are you looking for?">
+                            <button type="btn" class="search-btn"> search</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -246,6 +247,17 @@
     <!-- JS main  -->
     <script src="{{ asset('/frontend_asset/js/main.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const searchInput = document.querySelector(".search-input");
+        const searchBtn = document.querySelector(".search-btn");
+        searchBtn.addEventListener("click", function(e) {
+            const value = searchInput.value;
+            const link = "{{ route('search') }}" + "?q=" + value;
+            location.href = link;
+        });
+    </script>
+
 
     @yield('footer_script')
 

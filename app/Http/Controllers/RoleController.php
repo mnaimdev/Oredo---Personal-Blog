@@ -25,6 +25,21 @@ class RoleController extends Controller
         ]);
     }
 
+    function role_assign()
+    {
+
+        $permissions = Permission::all();
+        $roles = Role::all();
+        $users = User::all();
+
+        return view('admin.role.assign_role', [
+            'permissions' => $permissions,
+            'roles' => $roles,
+            'users' => $users,
+        ]);
+    }
+
+
     function permission_store(Request $request)
     {
         Permission::create([
@@ -43,35 +58,15 @@ class RoleController extends Controller
         return back();
     }
 
-    function assign_role(Request $request)
-    {
-        $user = User::find($request->user_id);
-        $user->assignRole($request->role_id);
-
-        return back();
-    }
-
-
-    // function edit_user_role($user_id)
+    // function assign_role(Request $request)
     // {
-    //     $users = User::find($user_id);
-    //     $permissions = Permission::all();
-    //     $roles = $users->getRoleNames();
-    //     return view('admin.role.edit', [
-    //         'users' => $users,
-    //         'permissions' => $permissions,
-    //         'roles' => $roles,
-    //     ]);
-    // }
-
-    // function edit_permission(Request $request)
-    // {
-    //     $users = User::find($request->user_id);
-    //     $permissions = $request->permission;
-    //     $users->syncPermissions($permissions);
+    //     $user = User::find($request->user_id);
+    //     $user->assignRole($request->role_id);
 
     //     return back();
     // }
+
+
 
     function edit_permission(Request $request)
     {
@@ -99,6 +94,12 @@ class RoleController extends Controller
         $user->syncRoles([]);
         $user->syncPermissions([]);
 
+        return back();
+    }
+
+    function remove_role($role_id)
+    {
+        Role::find($role_id)->delete();
         return back();
     }
 }

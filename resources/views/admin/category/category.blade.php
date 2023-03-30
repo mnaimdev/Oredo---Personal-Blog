@@ -6,88 +6,87 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
-
     </nav>
 
     <div class="container-fluid">
         <div class="row">
-            @can('show_category')
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Category List</h3>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped">
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Category List</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                            @foreach ($categories as $sl => $category)
                                 <tr>
-                                    <th>SL</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
+                                    <td>{{ $sl + 1 }}</td>
+                                    <td>{{ $category->category_name }}</td>
+                                    <td>
+                                        <img src="{{ asset('/uploads/category') }}/{{ $category->cat_img }}" alt="">
+                                    </td>
+                                    <td>
+
+                                        <a href="{{ route('category.edit', $category->id) }}"
+                                            class="btn btn-primary">Edit</a>
+
+
+                                        <a data-link="{{ route('category.delete', $category->id) }}"
+                                            class="btn btn-danger del">Delete</a>
+                                    </td>
                                 </tr>
-                                @foreach ($categories as $sl => $category)
-                                    <tr>
-                                        <td>{{ $sl + 1 }}</td>
-                                        <td>{{ $category->category_name }}</td>
-                                        <td>
-                                            <img src="{{ asset('/uploads/category') }}/{{ $category->cat_img }}" alt="">
-                                        </td>
-                                        <td>
-                                            @can('update_category')
-                                                <a href="{{ route('category.edit', $category->id) }}"
-                                                    class="btn btn-primary">Edit</a>
-                                            @endcan
-
-                                            <a data-link="{{ route('category.delete', $category->id) }}"
-                                                class="btn btn-danger del">Delete</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
+                            @endforeach
+                        </table>
                     </div>
                 </div>
-            @endcan
-            @can('add_category')
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Add Category</h3>
-                        </div>
-                        <div class="card-body">
+            </div>
 
-                            <form class="forms-sample" action="{{ route('category.store') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
 
-                                @if (session('success'))
-                                    <div class="alert alert-success">{{ session('success') }}</div>
-                                @endif
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">Category Name</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" name="category_name"
-                                        value="{{ old('category_name') }}">
-                                    @error('category_name')
-                                        <strong class="text-danger">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" name="cat_img" class="form-control" id="exampleInput">
-                                    @error('cat_img')
-                                        <strong class="text-danger">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                                <button type="submit" class="btn btn-primary">
-                                    Submit
-                                </button>
-
-                            </form>
-                        </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Add Category</h3>
                     </div>
+                    <div class="card-body">
 
+                        <form class="forms-sample" action="{{ route('category.store') }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
 
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Category Name</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1" name="category_name"
+                                    value="{{ old('category_name') }}">
+                                @error('category_name')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="cat_img" class="form-control" id="exampleInput">
+                                @error('cat_img')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+
+                        </form>
+                    </div>
                 </div>
-            @endcan
+
+
+            </div>
+
         </div>
     </div>
     </div>

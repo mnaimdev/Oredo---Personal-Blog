@@ -14,8 +14,7 @@
                                 <th>SL</th>
                                 <th>Category</th>
                                 <th>Title</th>
-                                <th>Tags</th>
-                                <th>Author Id</th>
+
                                 <th>Feat Image</th>
                                 <th>Action</th>
                             </tr>
@@ -23,31 +22,14 @@
                                 <tr>
                                     <td>{{ $sl + 1 }}</td>
                                     <td>{{ $post->rel_to_category->category_name }}</td>
-                                    <td>{{ $post->title }}</td>
                                     <td>
                                         @php
-                                            $after_explode = explode(',', $post->tag_id);
+                                            $truncated = Str::limit($post->title, 25, '...');
                                         @endphp
-                                        @foreach ($after_explode as $tag_id)
-                                            @php
-                                                $tag_item = App\Models\Tag::where('id', $tag_id)->get();
-                                            @endphp
-                                            @foreach ($tag_item as $tag)
-                                                <span class="badge badge-primary">{{ $tag->tag_name }}</span>
-                                            @endforeach
-                                        @endforeach
 
-                                        {{-- @php
-                                            $after_explode = explode(',', $post->tag_id);
-                                        @endphp
-                                        @foreach ($after_explode as $tag_id)
-                                            @php
-                                                $tag_items = App\Models\Tag::where('id', $tag_id)->first()->tag_name;
-                                            @endphp
-                                            <span class="badge badge-dark">{{ $tag_items }}</span>
-                                        @endforeach --}}
+                                        {{ $truncated }}
                                     </td>
-                                    <td>{{ $post->author_id }}</td>
+
                                     <td>
                                         <img width="100" src="{{ asset('/uploads/post') }}/{{ $post->feat_image }}"
                                             alt="">
@@ -57,7 +39,7 @@
 
                                         <a href="{{ route('post.view', $post->id) }}" class="btn btn-info">View</a>
 
-                                        <a href="{{ route('post.delete', $post->id) }}" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('post.delete', $post->id) }}" class="btn btn-danger">X</a>
                                     </td>
                                 </tr>
                             @endforeach
